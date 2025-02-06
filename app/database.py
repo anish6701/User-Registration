@@ -1,14 +1,17 @@
-from sqlalchemy.orm import create_session, sessionmaker  # Corrected import
+from sqlalchemy import  create_engine 
 from sqlalchemy import text
 from sqlalchemy.ext.declarative import declarative_base
-from sqlalchemy.orm import sessionmaker
+from sqlalchemy.orm import sessionmaker,Session
 import os
 from dotenv import load_dotenv
 
-load_dotenv()  # Load environment variables from .env
+load_dotenv()  
 
-DATABASE_URL = os.getenv("DATABASE_URL", "mysql+pymysql://username:password@amazonEndpoint/dbName")
+DATABASE_URL = (DATABASE_URL)
 
-engine = create_session(DATABASE_URL)
+
+engine = create_engine(DATABASE_URL)
+
 SessionLocal = sessionmaker(bind=engine, autocommit=False, autoflush=False)
+
 Base = declarative_base()
